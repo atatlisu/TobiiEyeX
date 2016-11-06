@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using EyeXFramework;
 
 namespace TobiiEyeX {
     /// <summary>
@@ -20,6 +21,10 @@ namespace TobiiEyeX {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+
+            var eyeXHost = new EyeXHost();
+            eyeXHost.Start();
+            eyeXHost.LaunchCalibrationTesting();
         }
     }
 }

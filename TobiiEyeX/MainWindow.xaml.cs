@@ -17,6 +17,7 @@ using Tobii.EyeX.Framework;
 using System.ComponentModel;
 using System.Threading;
 using System.Diagnostics;
+using TobiiEyeX.helper;
 
 namespace TobiiEyeX
 {
@@ -46,6 +47,9 @@ namespace TobiiEyeX
 
         // measure time used to skip some points (only in the textBlock displaying) to improve readability in the window
         private Stopwatch stopWatch = new Stopwatch();
+
+        // when the 'recDataWorker' has finished, the calibration points are stored in this array
+        private Point[] calibrPoints = new Point[Enum.GetNames(typeof(Corners)).Length];
 
 
         public MainWindow()
@@ -118,6 +122,9 @@ namespace TobiiEyeX
         */
         private void recordAndStorePoints(Corners corner)
         {
+            // remove all previously stored points to make sure that the list only contains the points of the currently recorded corner
+            recGazePoints.Clear();
+
             streamRecActive = true;
 
             // store the data points occuring in the specified period
@@ -135,6 +142,11 @@ namespace TobiiEyeX
             gazeRecStr += Environment.NewLine;
 
             System.IO.File.WriteAllText(@"gaze_rec_file_" + ((int)corner) + "_" + corner + ".txt", gazeRecStr);
+
+
+            // calculate and set the calibration point for the specific corner 
+            //  by using the median of the x and y values of the recorded points
+            calibrPoints[(int)corner] = Helper.calcMedianPoint(recGazePoints);
         }
 
         // set the text that is displayed in the textBlock for the corner description
@@ -168,6 +180,9 @@ namespace TobiiEyeX
             System.Threading.Thread.Sleep(400);
             Application.Current.Shutdown();
         }
+
+
+        
     }
 }
 

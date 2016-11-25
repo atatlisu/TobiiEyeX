@@ -69,7 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="helper\Helper.cs" />
+    <Compile Include="Utils\Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -106,7 +106,20 @@
     <Folder Include="lib\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\calibration_image.jpg" />
+    <Resource Include="img\calibration_image.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\Keyboard\backSpace.png" />
+    <Resource Include="img\Keyboard\capsLock.png" />
+    <Resource Include="img\Keyboard\controlKey.png" />
+    <Resource Include="img\Keyboard\enter.png" />
+    <Resource Include="img\Keyboard\key.png" />
+    <Resource Include="img\Keyboard\keyboard-layout.png" />
+    <Resource Include="img\Keyboard\leftShift.png" />
+    <Resource Include="img\Keyboard\overEnter.png" />
+    <Resource Include="img\Keyboard\rightShift.png" />
+    <Resource Include="img\Keyboard\space.png" />
+    <Resource Include="img\Keyboard\tab.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

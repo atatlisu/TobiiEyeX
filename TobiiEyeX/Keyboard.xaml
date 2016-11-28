@@ -1,0 +1,81 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TobiiEyeX"
+        xmlns:KeyComponents="clr-namespace:TobiiEyeX.KeyComponents" x:Class="TobiiEyeX.Keyboard"
+        mc:Ignorable="d"
+        Title="Keyboard" Height="600" Width="1000" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid HorizontalAlignment="Center" Margin="78,205,76,68" VerticalAlignment="Center" Height="284" Width="832">
+            <local:DefaultKey HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" TopLegend="~" BotLegend="`"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="64,10,0,0" VerticalAlignment="Top" TopLegend="!" BotLegend="1"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="118,10,0,0" VerticalAlignment="Top" TopLegend="@" BotLegend="2"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="172,10,0,0" VerticalAlignment="Top" TopLegend="#" BotLegend="3"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="226,10,0,0" VerticalAlignment="Top" TopLegend="$" BotLegend="4"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="280,10,0,0" VerticalAlignment="Top" TopLegend="%" BotLegend="5"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="334,10,0,0" VerticalAlignment="Top" TopLegend="^" BotLegend="6"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="388,10,0,0" VerticalAlignment="Top" TopLegend="&amp;" BotLegend="7"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="442,10,0,0" VerticalAlignment="Top" TopLegend="*" BotLegend="8"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="496,10,0,0" VerticalAlignment="Top" TopLegend="(" BotLegend="9"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="550,10,0,0" VerticalAlignment="Top" TopLegend=")" BotLegend="0"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="604,10,0,0" VerticalAlignment="Top" TopLegend="_" BotLegend="-"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="658,10,0,0" VerticalAlignment="Top" TopLegend="+" BotLegend="="/>
+            <local:BackspaceKey HorizontalAlignment="Left" Margin="712,10,0,0" VerticalAlignment="Top"/>
+
+            <local:TabKey HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top" TabTopLegend="Tab"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="91,64,0,0" VerticalAlignment="Top" TopLegend="Q"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="145,64,0,0" VerticalAlignment="Top" TopLegend="W"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="199,64,0,0" VerticalAlignment="Top" TopLegend="E"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="253,64,0,0" VerticalAlignment="Top" TopLegend="R"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="307,64,0,0" VerticalAlignment="Top" TopLegend="T"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="361,64,0,0" VerticalAlignment="Top" TopLegend="Y"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="415,64,0,0" VerticalAlignment="Top" TopLegend="U"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="469,64,0,0" VerticalAlignment="Top" TopLegend="I"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="523,64,0,0" VerticalAlignment="Top" TopLegend="O"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="577,64,0,0" VerticalAlignment="Top" TopLegend="P"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="631,64,0,0" VerticalAlignment="Top" TopLegend="{}{" BotLegend="["/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="685,64,0,0" VerticalAlignment="Top" TopLegend="}" BotLegend="]"/>
+            <local:TabKey HorizontalAlignment="Left" Margin="739,64,0,0" VerticalAlignment="Top" TabTopLegend="|" TabBotLegend="\"/>
+
+            <local:CapslockKey HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="105,118,0,0" VerticalAlignment="Top" TopLegend="A"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="159,118,0,0" VerticalAlignment="Top" TopLegend="S"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="213,118,0,0" VerticalAlignment="Top" TopLegend="D"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="267,118,0,0" VerticalAlignment="Top" TopLegend="F"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="321,118,0,0" VerticalAlignment="Top" TopLegend="G"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="375,118,0,0" VerticalAlignment="Top" TopLegend="H"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="429,118,0,0" VerticalAlignment="Top" TopLegend="J"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="483,118,0,0" VerticalAlignment="Top" TopLegend="K"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="537,118,0,0" VerticalAlignment="Top" TopLegend="L"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="591,118,0,0" VerticalAlignment="Top" TopLegend=":" BotLegend=";"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="645,118,0,0" VerticalAlignment="Top" TopLegend="&quot;" BotLegend="'"/>
+            <local:EnterKey HorizontalAlignment="Left" Margin="699,118,0,0" VerticalAlignment="Top"/>
+
+            <local:LeftShift HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="132,172,0,0" VerticalAlignment="Top" TopLegend="Z"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="186,172,0,0" VerticalAlignment="Top" TopLegend="X"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="240,172,0,0" VerticalAlignment="Top" TopLegend="C"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="294,172,0,0" VerticalAlignment="Top" TopLegend="V"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="348,172,0,0" VerticalAlignment="Top" TopLegend="B"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="402,172,0,0" VerticalAlignment="Top" TopLegend="N"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="456,172,0,0" VerticalAlignment="Top" TopLegend="M"/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="510,172,0,0" VerticalAlignment="Top" TopLegend="&lt;" BotLegend=","/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="564,172,0,0" VerticalAlignment="Top" TopLegend="&gt;" BotLegend="."/>
+            <local:DefaultKey HorizontalAlignment="Left" Margin="618,172,0,0" VerticalAlignment="Top" TopLegend="?" BotLegend="/"/>
+            <local:RightShiftKey HorizontalAlignment="Left" Margin="672,172,0,0" VerticalAlignment="Top"/>
+
+            <local:ControlKey HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Ctrl"/>
+            <local:ControlKey HorizontalAlignment="Left" Margin="77,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Win"/>
+            <local:ControlKey HorizontalAlignment="Left" Margin="145,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Alt"/>
+            <KeyComponents:SpaceKey HorizontalAlignment="Left" Margin="213,225,0,0" VerticalAlignment="Top"/>
+            <local:ControlKey HorizontalAlignment="Left" Margin="550,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Alt"/>
+            <local:ControlKey HorizontalAlignment="Left" Margin="618,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Win"/>
+            <local:ControlKey HorizontalAlignment="Left" Margin="685,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Menu"/>
+            <local:ControlKey HorizontalAlignment="Left" Margin="752,225,0,0" VerticalAlignment="Top" CtrlTopLegend="Ctrl"/>
+
+        </Grid>
+
+    </Grid>
+</Window>

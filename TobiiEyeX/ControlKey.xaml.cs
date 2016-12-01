@@ -19,9 +19,9 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class ControlKey : UserControl {
 
-        public static readonly DependencyProperty TopLegendProperty = DependencyProperty.Register("CtrlTopLegend", typeof(string), typeof(ControlKey));
+        public static readonly DependencyProperty TopLegendProperty = DefaultKey.TopLegendProperty.AddOwner(typeof(ControlKey));
 
-        public string CtrlTopLegend {
+        public string TopLegend {
             get { return (string)GetValue(TopLegendProperty); }
             set { SetValue(TopLegendProperty, value); }
         }

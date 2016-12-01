@@ -19,15 +19,15 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class TabKey : UserControl {
 
-        public static readonly DependencyProperty TopLegendProperty = DependencyProperty.Register("TabTopLegend", typeof(string), typeof(TabKey));
-        public static readonly DependencyProperty BotLegendProperty = DependencyProperty.Register("TabBotLegend", typeof(string), typeof(TabKey));
+        public static readonly DependencyProperty TopLegendProperty = DefaultKey.TopLegendProperty.AddOwner(typeof(TabKey));
+        public static readonly DependencyProperty BotLegendProperty = DefaultKey.BotLegendProperty.AddOwner(typeof(TabKey));
 
-        public string TabTopLegend {
+        public string TopLegend {
             get { return (string)GetValue(TopLegendProperty); }
             set { SetValue(TopLegendProperty, value); }
         }
 
-        public string TabBotLegend {
+        public string BotLegend {
             get { return (string)GetValue(BotLegendProperty); }
             set { SetValue(BotLegendProperty, value); }
         }

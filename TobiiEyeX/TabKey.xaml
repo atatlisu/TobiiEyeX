@@ -8,8 +8,8 @@
              d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Height="54">
     <Grid>
         <Image x:Name="image" Height="54" Margin="0" Width="81" Source="img/Keyboard/tab.png"/>
-        <Label x:Name="topLegend" Content="{Binding TabTopLegend}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Width="66" Height="24"/>
-        <Label x:Name="botLegend" Content="{Binding TabBotLegend}" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Top" Width="66" Height="24"/>
+        <Label x:Name="topLegend" Content="{Binding Path=TopLegend}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Width="66" Height="24"/>
+        <Label x:Name="botLegend" Content="{Binding Path=BotLegend}" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Top" Width="66" Height="24"/>
 
     </Grid>
 </UserControl>

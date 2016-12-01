@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="68" Height="54">
     <Grid>
         <Image x:Name="image" Height="54" Margin="0" Width="68" Source="img/Keyboard/controlKey.png"/>
-        <Label x:Name="topLegend" Content="{Binding CtrlTopLegend}" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="53" Height="24"/>
+        <Label x:Name="topLegend" Content="{Binding Path=TopLegend}" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Width="53" Height="24"/>
 
     </Grid>
 </UserControl>

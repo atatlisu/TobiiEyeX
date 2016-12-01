@@ -14,9 +14,7 @@
         <Image x:Name="image" Source="img/calibration_image.jpg" Stretch="Fill"/>
         <TextBlock x:Name="textBlockCorner" HorizontalAlignment="Left" Margin="485,316,0,0" TextWrapping="Wrap" Text="text" VerticalAlignment="Top" Height="88.861" Width="987" FontSize="36" UseLayoutRounding="False"/>
         <TextBlock x:Name="textBlockDataPoint" HorizontalAlignment="Left" Margin="485,436,0,0" TextWrapping="Wrap" Text="[no gaze data points available]" VerticalAlignment="Top" FontSize="24" Height="206" Width="987"/>
-        <local:DefaultKey x:Name="testKey" TopLegend="A" BotLegend="Ф" Margin="301,218,1337,597">
 
-        </local:DefaultKey>
-        <local:TabKey HorizontalAlignment="Left" Margin="179,338,0,0" VerticalAlignment="Top" Width="81" TabTopLegend="Tab"/>
+        <local:TabKey HorizontalAlignment="Left" Margin="179,338,0,0" VerticalAlignment="Top" Width="81" TopLegend="Tab"/>
     </Grid>
 </Window>

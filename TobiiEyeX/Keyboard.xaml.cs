@@ -20,5 +20,12 @@ namespace TobiiEyeX {
         public Keyboard() {
             InitializeComponent();
         }
+
+        private void onMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
+            if (e.Source is DefaultKey) {
+                DefaultKey key = e.Source as DefaultKey;
+                System.Diagnostics.Debug.WriteLine("Clicked on " + key.TopLegend);
+            }
+        }
     }
 }

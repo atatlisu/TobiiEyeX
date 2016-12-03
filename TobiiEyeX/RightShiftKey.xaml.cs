@@ -18,16 +18,30 @@ namespace TobiiEyeX {
     /// Interaction logic for RightShiftKey.xaml
     /// </summary>
     public partial class RightShiftKey : UserControl {
+
+        private bool toggled = false;
+
         public RightShiftKey() {
             InitializeComponent();
         }
 
+        public void toggle() {
+            if (toggled) {
+                shadow.Opacity = 0;
+                toggled = false;
+            }
+            else {
+                shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
+                toggled = true;
+            }
+        }
+
         private void onMouseEnter(object sender, MouseEventArgs e) {
-            shadow.Opacity = 0.3;
+            shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
         }
 
         private void onMouseleave(object sender, MouseEventArgs e) {
-            shadow.Opacity = 0;
+            if (!toggled) shadow.Opacity = 0;
         }
     }
 }

@@ -44,7 +44,7 @@ namespace TobiiEyeX {
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {
-            shadow.Opacity = 0.3;
+            shadow.Opacity = (double) Application.Current.Resources["HighlightOpacity"];
         }
 
         private void onMouseleave(object sender, MouseEventArgs e) {

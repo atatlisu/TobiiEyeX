@@ -66,6 +66,8 @@ namespace TobiiEyeX {
                 case 3:
                 case 4:
                     // Shifts
+                    leftShift.toggle();
+                    rightShift.toggle();
                     isShiftPressed = !isShiftPressed;
                     wasEdited = false;
                     break;
@@ -86,6 +88,7 @@ namespace TobiiEyeX {
                     break;
                 case 7:
                     // Caps
+                    capsLock.toggle();
                     isCapsLockPressed = !isCapsLockPressed;
                     wasEdited = false;
                     break;

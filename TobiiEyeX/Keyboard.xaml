@@ -41,7 +41,7 @@
                 <local:DefaultKey HorizontalAlignment="Left" Margin="685,64,0,0" VerticalAlignment="Top" TopLegend="}" BotLegend="]"/>
                 <local:TabKey HorizontalAlignment="Left" Margin="739,64,0,0" VerticalAlignment="Top" TopLegend="|" BotLegend="\"/>
 
-                <local:CapslockKey HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top"/>
+                <local:CapslockKey x:Name="capsLock" HorizontalAlignment="Left" Margin="10,118,0,0" VerticalAlignment="Top"/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="105,118,0,0" VerticalAlignment="Top" TopLegend="A" IsAlphabet="True"/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="159,118,0,0" VerticalAlignment="Top" TopLegend="S" IsAlphabet="True"/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="213,118,0,0" VerticalAlignment="Top" TopLegend="D" IsAlphabet="True"/>
@@ -55,7 +55,7 @@
                 <local:DefaultKey HorizontalAlignment="Left" Margin="645,118,0,0" VerticalAlignment="Top" TopLegend="&quot;" BotLegend="'"/>
                 <local:EnterKey HorizontalAlignment="Left" Margin="699,118,0,0" VerticalAlignment="Top"/>
 
-                <local:LeftShiftKey HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top"/>
+                <local:LeftShiftKey x:Name="leftShift" HorizontalAlignment="Left" Margin="10,172,0,0" VerticalAlignment="Top"/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="132,172,0,0" VerticalAlignment="Top" TopLegend="Z" IsAlphabet="True"/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="186,172,0,0" VerticalAlignment="Top" TopLegend="X" IsAlphabet="True"/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="240,172,0,0" VerticalAlignment="Top" TopLegend="C" IsAlphabet="True"/>
@@ -66,7 +66,7 @@
                 <local:DefaultKey HorizontalAlignment="Left" Margin="510,172,0,0" VerticalAlignment="Top" TopLegend="&lt;" BotLegend=","/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="564,172,0,0" VerticalAlignment="Top" TopLegend="&gt;" BotLegend="."/>
                 <local:DefaultKey HorizontalAlignment="Left" Margin="618,172,0,0" VerticalAlignment="Top" TopLegend="?" BotLegend="/"/>
-                <local:RightShiftKey HorizontalAlignment="Left" Margin="672,172,0,0" VerticalAlignment="Top"/>
+                <local:RightShiftKey x:Name="rightShift" HorizontalAlignment="Left" Margin="672,172,0,0" VerticalAlignment="Top"/>
 
                 <local:ControlKey HorizontalAlignment="Left" Margin="10,225,0,0" VerticalAlignment="Top" TopLegend="Ctrl"/>
                 <local:ControlKey HorizontalAlignment="Left" Margin="77,225,0,0" VerticalAlignment="Top" TopLegend="Win"/>

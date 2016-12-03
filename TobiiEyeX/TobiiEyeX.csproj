@@ -125,7 +125,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LeftShift.xaml">
+    <Page Include="LeftShiftKey.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,8 +163,8 @@
     <Compile Include="Keyboard.xaml.cs">
       <DependentUpon>Keyboard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LeftShift.xaml.cs">
-      <DependentUpon>LeftShift.xaml</DependentUpon>
+    <Compile Include="LeftShiftKey.xaml.cs">
+      <DependentUpon>LeftShiftKey.xaml</DependentUpon>
     </Compile>
     <Compile Include="RightShiftKey.xaml.cs">
       <DependentUpon>RightShiftKey.xaml</DependentUpon>

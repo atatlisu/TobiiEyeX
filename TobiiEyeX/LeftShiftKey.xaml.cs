@@ -17,9 +17,17 @@ namespace TobiiEyeX {
     /// <summary>
     /// Interaction logic for LeftShift.xaml
     /// </summary>
-    public partial class LeftShift : UserControl {
-        public LeftShift() {
+    public partial class LeftShiftKey : UserControl {
+        public LeftShiftKey() {
             InitializeComponent();
+        }
+
+        private void onMouseEnter(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0.3;
+        }
+
+        private void onMouseleave(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0;
         }
     }
 }

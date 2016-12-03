@@ -30,5 +30,13 @@ namespace TobiiEyeX {
             InitializeComponent();
             DataContext = this;
         }
+
+        private void onMouseEnter(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0.3;
+        }
+
+        private void onMouseleave(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0;
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace TobiiEyeX {
 
         public static readonly DependencyProperty TopLegendProperty = DependencyProperty.Register("TopLegend", typeof(string), typeof(DefaultKey));
         public static readonly DependencyProperty BotLegendProperty = DependencyProperty.Register("BotLegend", typeof(string), typeof(DefaultKey));
+        public static readonly DependencyProperty IsAlphabetProperty = DependencyProperty.Register("IsAlphabet", typeof(bool), typeof(DefaultKey), new PropertyMetadata(false));
 
         public string TopLegend {
             get { return (string)GetValue(TopLegendProperty); }
@@ -30,6 +31,11 @@ namespace TobiiEyeX {
         public string BotLegend {
             get { return (string)GetValue(BotLegendProperty); }
             set { SetValue(BotLegendProperty, value); }
+        }
+
+        public bool IsAlphabet {
+            get { return (bool)GetValue(IsAlphabetProperty); }
+            set { SetValue(IsAlphabetProperty, value); }
         }
 
         public DefaultKey() {

@@ -13,13 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TobiiEyeX.KeyComponents {
+namespace TobiiEyeX {
     /// <summary>
     /// Interaction logic for SpaceKey.xaml
     /// </summary>
     public partial class SpaceKey : UserControl {
+
         public SpaceKey() {
             InitializeComponent();
+        }
+
+        private void onMouseEnter(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0.3;
+        }
+
+        private void onMouseleave(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0;
         }
     }
 }

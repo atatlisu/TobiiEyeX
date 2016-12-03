@@ -21,6 +21,7 @@ namespace TobiiEyeX {
 
         public static readonly DependencyProperty TopLegendProperty = DefaultKey.TopLegendProperty.AddOwner(typeof(TabKey));
         public static readonly DependencyProperty BotLegendProperty = DefaultKey.BotLegendProperty.AddOwner(typeof(TabKey));
+        public static readonly DependencyProperty IsActualTabProperty = DependencyProperty.Register("IsActualTab", typeof(bool), typeof(TabKey), new PropertyMetadata(false));
 
         public string TopLegend {
             get { return (string)GetValue(TopLegendProperty); }
@@ -32,9 +33,22 @@ namespace TobiiEyeX {
             set { SetValue(BotLegendProperty, value); }
         }
 
+        public bool IsActualTab {
+            get { return (bool)GetValue(IsActualTabProperty); }
+            set { SetValue(IsActualTabProperty, value); }
+        }
+
         public TabKey() {
             InitializeComponent();
             DataContext = this;
+        }
+
+        private void onMouseEnter(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0.3;
+        }
+
+        private void onMouseleave(object sender, MouseEventArgs e) {
+            shadow.Opacity = 0;
         }
     }
 }

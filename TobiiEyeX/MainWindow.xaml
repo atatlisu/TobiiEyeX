@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TobiiEyeX"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="900" Width="1700">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="794*"/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="image" Source="img/calibration_image.jpg" Stretch="Fill"/>
+        <TextBlock x:Name="textBlockCorner" HorizontalAlignment="Left" Margin="485,316,0,0" TextWrapping="Wrap" Text="text" VerticalAlignment="Top" Height="88.861" Width="987" FontSize="36" UseLayoutRounding="False"/>
+        <TextBlock x:Name="textBlockDataPoint" HorizontalAlignment="Left" Margin="485,436,0,0" TextWrapping="Wrap" Text="[no gaze data points available]" VerticalAlignment="Top" FontSize="24" Height="206" Width="987"/>
+
+        <local:TabKey HorizontalAlignment="Left" Margin="179,338,0,0" VerticalAlignment="Top" Width="81" TopLegend="Tab"/>
     </Grid>
 </Window>

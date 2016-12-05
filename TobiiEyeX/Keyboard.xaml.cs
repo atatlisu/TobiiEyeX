@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using EyeXFramework.Wpf;
 
 namespace TobiiEyeX {
     /// <summary>
@@ -35,6 +36,13 @@ namespace TobiiEyeX {
         public Keyboard() {
             InitializeComponent();
             inputBox.Focus();
+        }
+
+        private void onHasGazeChanged(object sender, RoutedEventArgs e) {
+            if (e.Source is DefaultKey) {
+                DefaultKey key = e.Source as DefaultKey;
+                System.Diagnostics.Debug.WriteLine(key.topLegend + " catches gaze.");
+            }
         }
 
         private void onMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {

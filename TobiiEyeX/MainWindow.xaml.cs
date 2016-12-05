@@ -12,12 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using EyeXFramework;
-using Tobii.EyeX.Framework;
+using EyeXFramework.Wpf;
 using System.ComponentModel;
 using System.Threading;
 using System.Diagnostics;
-using TobiiEyeX.helper;
 
 namespace TobiiEyeX
 {
@@ -70,7 +68,7 @@ namespace TobiiEyeX
 
         private void procStreamWorker_DoWork(object sender, DoWorkEventArgs eArgs)
         {
-            using (var eyeXHost = new EyeXHost())
+            /*using (var eyeXHost = new EyeXHost())
             {
                 // Create a data stream: lightly filtered gaze point data.
                 // Other choices of data streams include EyePositionDataStream and FixationDataStream.
@@ -98,7 +96,7 @@ namespace TobiiEyeX
 
                     System.Threading.Thread.Sleep(Timeout.Infinite);
                 }
-            }
+            }*/
         }
 
         private void recDataWorker_DoWork(object sender, DoWorkEventArgs eArgs)
@@ -123,7 +121,7 @@ namespace TobiiEyeX
         private void recordAndStorePoints(Corners corner)
         {
             // remove all previously stored points to make sure that the list only contains the points of the currently recorded corner
-            recGazePoints.Clear();
+            /*recGazePoints.Clear();
 
             streamRecActive = true;
 
@@ -146,7 +144,7 @@ namespace TobiiEyeX
 
             // calculate and set the calibration point for the specific corner 
             //  by using the median of the x and y values of the recorded points
-            calibrPoints[(int)corner] = Helper.calcMedianPoint(recGazePoints);
+            calibrPoints[(int)corner] = Helper.calcMedianPoint(recGazePoints);*/
         }
 
         // set the text that is displayed in the textBlock for the corner description

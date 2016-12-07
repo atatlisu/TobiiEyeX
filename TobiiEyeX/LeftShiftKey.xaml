@@ -5,11 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TobiiEyeX"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" Height="54" MouseEnter="onMouseEnter" MouseLeave="onMouseleave">
+             d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="122" Height="54" MouseEnter="onMouseEnter" MouseLeave="onMouseleave" MinWidth="122" MinHeight="54">
     <Grid>
-        <Image x:Name="image" Height="54" Margin="0" Width="122" Source="img/Keyboard/leftShift.png"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/Keyboard/leftShift.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.07*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <Canvas x:Name="shadow" Background="#FF342A2A" Opacity="0" />
-        <Label x:Name="label" Content="Shift" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label" Content="Shift" Margin="0" Grid.Row="1" Grid.Column="1"/>
 
     </Grid>
 </UserControl>

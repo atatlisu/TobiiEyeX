@@ -5,12 +5,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TobiiEyeX"
              mc:Ignorable="d" 
-             d:DesignHeight="54" d:DesignWidth="54" Width="54" HorizontalAlignment="Center" Height="54" VerticalAlignment="Center" MouseEnter="onMouseEnter" MouseLeave="onMouseleave" Foreground="{x:Null}">
+             d:DesignHeight="54" d:DesignWidth="54" Width="54" Height="54" MouseEnter="onMouseEnter" MouseLeave="onMouseleave" Foreground="{x:Null}" MinWidth="54" MinHeight="54">
     <Grid>
-        <Image x:Name="image" Height="54" Margin="0,0,0,0" Width="54" Source="img/Keyboard/key.png"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/Keyboard/key.png"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
         <Canvas x:Name="shadow" Background="#FF342A2A" Opacity="0" />
-        <Label x:Name="topLegend" Content="{Binding Path=TopLegend}" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top" Height="24"/>
-        <Label x:Name="botLegend" Content="{Binding Path=BotLegend}" HorizontalAlignment="Left" Margin="5,23,0,0" VerticalAlignment="Top" Height="24"/>
-
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.13*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="topLegend" Content="{Binding Path=TopLegend}" Margin="0,3,0,0" Padding="5,1,5,5" Grid.Column="1"/>
+            <Label x:Name="botLegend" Content="{Binding Path=BotLegend}" Margin="0,0,0,5" Grid.Row="1" Padding="5,1,5,5" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </UserControl>

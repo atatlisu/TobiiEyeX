@@ -19,6 +19,8 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class TabKey : UserControl {
 
+        private bool toggled = false;
+
         public static readonly DependencyProperty TopLegendProperty = DefaultKey.TopLegendProperty.AddOwner(typeof(TabKey));
         public static readonly DependencyProperty BotLegendProperty = DefaultKey.BotLegendProperty.AddOwner(typeof(TabKey));
         public static readonly DependencyProperty IsActualTabProperty = DependencyProperty.Register("IsActualTab", typeof(bool), typeof(TabKey), new PropertyMetadata(false));
@@ -41,6 +43,17 @@ namespace TobiiEyeX {
         public TabKey() {
             InitializeComponent();
             DataContext = this;
+        }
+
+        public void toggle() {
+            if (toggled) {
+                shadow.Opacity = 0;
+                toggled = false;
+            }
+            else {
+                shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
+                toggled = true;
+            }
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {

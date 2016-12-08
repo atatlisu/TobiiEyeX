@@ -19,6 +19,8 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class DefaultKey : UserControl {
 
+        private bool toggled = false;
+
         public static readonly DependencyProperty TopLegendProperty = DependencyProperty.Register("TopLegend", typeof(string), typeof(DefaultKey));
         public static readonly DependencyProperty BotLegendProperty = DependencyProperty.Register("BotLegend", typeof(string), typeof(DefaultKey));
         public static readonly DependencyProperty IsAlphabetProperty = DependencyProperty.Register("IsAlphabet", typeof(bool), typeof(DefaultKey), new PropertyMetadata(false));
@@ -41,6 +43,17 @@ namespace TobiiEyeX {
         public DefaultKey() {
             InitializeComponent();
             DataContext = this;
+        }
+
+        public void toggle() {
+            if (toggled) {
+                shadow.Opacity = 0;
+                toggled = false;
+            }
+            else {
+                shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
+                toggled = true;
+            }
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {

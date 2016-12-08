@@ -19,8 +19,21 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class SpaceKey : UserControl {
 
+        private bool toggled = false;
+
         public SpaceKey() {
             InitializeComponent();
+        }
+
+        public void toggle() {
+            if (toggled) {
+                shadow.Opacity = 0;
+                toggled = false;
+            }
+            else {
+                shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
+                toggled = true;
+            }
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {

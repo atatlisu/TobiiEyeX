@@ -19,6 +19,8 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class ControlKey : UserControl {
 
+        private bool toggled = false;
+
         public static readonly DependencyProperty TopLegendProperty = DefaultKey.TopLegendProperty.AddOwner(typeof(ControlKey));
 
         public string TopLegend {
@@ -29,6 +31,17 @@ namespace TobiiEyeX {
         public ControlKey() {
             InitializeComponent();
             DataContext = this;
+        }
+
+        public void toggle() {
+            if (toggled) {
+                shadow.Opacity = 0;
+                toggled = false;
+            }
+            else {
+                shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
+                toggled = true;
+            }
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {

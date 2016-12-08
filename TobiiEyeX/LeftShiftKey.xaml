@@ -10,16 +10,16 @@
         <Grid.Background>
             <ImageBrush ImageSource="img/Keyboard/leftShift.png"/>
         </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.07*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
         <Canvas x:Name="shadow" Background="#FF342A2A" Opacity="0" />
-        <Label x:Name="label" Content="Shift" Margin="0" Grid.Row="1" Grid.Column="1"/>
-
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.06*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="label" Content="Shift" Margin="0" Grid.Row="0" Grid.Column="1"/>
+        </Grid>
     </Grid>
 </UserControl>

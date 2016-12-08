@@ -10,10 +10,6 @@
         <Grid.Background>
             <ImageBrush ImageSource="img/Keyboard/key.png"/>
         </Grid.Background>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
         <Canvas x:Name="shadow" Background="#FF342A2A" Opacity="0" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

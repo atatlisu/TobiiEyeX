@@ -47,7 +47,7 @@ namespace TobiiEyeX {
         }
 
         private void onEyePositionDataStreamNext(object sender, EyeXFramework.GazePointEventArgs e) {
-            System.Diagnostics.Debug.WriteLine("Gaze point is ({0:0.0}, {1:0.0})", e.X, e.Y);
+            //System.Diagnostics.Debug.WriteLine("Gaze point is ({0:0.0}, {1:0.0})", e.X, e.Y);
         }
 
         private void onHasGazeChanged(object sender, RoutedEventArgs e) {

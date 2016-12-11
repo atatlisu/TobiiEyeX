@@ -12,12 +12,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using EyeXFramework.Wpf;
+using Tobii.EyeX.Framework;
 
 namespace TobiiEyeX {
     /// <summary>
     /// Interaction logic for Keyboard.xaml
     /// </summary>
     public partial class Keyboard : Window {
+
+        private WpfEyeXHost eyeXHost;
 
         private int lastHit;
         private bool isShiftPressed = false;
@@ -37,6 +40,14 @@ namespace TobiiEyeX {
         public Keyboard() {
             InitializeComponent();
             inputBox.Focus();
+            eyeXHost = new WpfEyeXHost();
+            eyeXHost.Start();
+            EyeXFramework.GazePointDataStream dataStream = eyeXHost.CreateGazePointDataStream(GazePointDataMode.LightlyFiltered);
+            dataStream.Next += onEyePositionDataStreamNext;
+        }
+
+        private void onEyePositionDataStreamNext(object sender, EyeXFramework.GazePointEventArgs e) {
+            System.Diagnostics.Debug.WriteLine("Gaze point is ({0:0.0}, {1:0.0})", e.X, e.Y);
         }
 
         private void onHasGazeChanged(object sender, RoutedEventArgs e) {
@@ -201,6 +212,10 @@ namespace TobiiEyeX {
                 inputBox.Focus();
                 inputBox.Select(inputBox.Text.Length, 0);
             }
+        }
+
+        private void onClose(object sender, EventArgs e) {
+            eyeXHost.Dispose();
         }
     }
 }

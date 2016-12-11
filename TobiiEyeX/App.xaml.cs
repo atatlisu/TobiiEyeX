@@ -13,16 +13,16 @@ namespace TobiiEyeX {
     /// </summary>
     public partial class App : Application {
 
-        private WpfEyeXHost eyeXHost;
+        //private WpfEyeXHost eyeXHost;
 
         public App() {
-            eyeXHost = new WpfEyeXHost();
-            eyeXHost.Start();
+            /*eyeXHost = new WpfEyeXHost();
+            eyeXHost.Start();*/
         }
 
-        protected override void OnExit(ExitEventArgs e) {
+        /*protected override void OnExit(ExitEventArgs e) {
             base.OnExit(e);
             eyeXHost.Dispose();
-        }
+        }*/
     }
 }

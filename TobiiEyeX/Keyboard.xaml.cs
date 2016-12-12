@@ -46,20 +46,19 @@ namespace TobiiEyeX {
         }
 
         private void onHasGazeChanged(object sender, RoutedEventArgs e) {
+            object source = e.Source;
+            AbstractKey aKey = source as AbstractKey;
             if (timer != null && timer.isRunning) {
                 // If first initialization or timer is already running
                 // Stop it and refresh key, because we moving to a new one
+                // Stopping timer and reseting highlight
                 timer.Stop();
-                AbstractKey aKey = e.Source as AbstractKey;
                 aKey.resetHighlight();
             }
             else {
                 // If timer is not running 
                 // Just run it
                 timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
-                object source = e.Source;
-                AbstractKey aKey = e.Source as AbstractKey;
-                toggleKey(source);
                 timer.OnElapsed += delegate () {
                     captureKey(source);
                     aKey.resetHighlight();
@@ -68,7 +67,9 @@ namespace TobiiEyeX {
                     aKey.progressHighlight(ratio);
                 };
                 timer.Start();
-            } 
+            }
+            // And anyway toggle key
+            toggleKey(source);
         }
 
         private void captureKey(object source) {
@@ -100,7 +101,6 @@ namespace TobiiEyeX {
                 case 4:
                     // Shifts
                     leftShift.toggle();
-                    rightShift.toggle();
                     isShiftPressed = !isShiftPressed;
                     wasEdited = false;
                     break;
@@ -150,9 +150,8 @@ namespace TobiiEyeX {
                 case 3:
                 case 4:
                     // Shifts
-                    if (!leftShift.toggled && !rightShift.toggled) {
+                    if (!leftShift.toggled) {
                         leftShift.toggle();
-                        rightShift.toggle();
                     }
                     break;
                 case 7:

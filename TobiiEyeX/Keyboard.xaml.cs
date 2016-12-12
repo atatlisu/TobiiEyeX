@@ -22,8 +22,6 @@ namespace TobiiEyeX {
     public partial class Keyboard : Window {
 
         private WpfEyeXHost eyeXHost;
-
-        private int lastHit;
         private bool isShiftPressed = false;
         private bool isCapsLockPressed = false;
         private Dictionary<Type, int> keyTypes = new Dictionary<Type, int> {
@@ -48,95 +46,23 @@ namespace TobiiEyeX {
         }
 
         private void onHasGazeChanged(object sender, RoutedEventArgs e) {
-            bool wasEdited = true;
-            switch (keyTypes[e.Source.GetType()]) {
-                case 0:
-                    // Default
-                    DefaultKey commonKey = e.Source as DefaultKey;
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        if (commonKey.IsAlphabet) {
-                            if (isShiftPressed || isCapsLockPressed) inputBox.Text += commonKey.TopLegend.ToUpper();
-                            else inputBox.Text += commonKey.TopLegend.ToLower();
-                        }
-                        else {
-                            if (isShiftPressed) inputBox.Text += commonKey.TopLegend;
-                            else inputBox.Text += commonKey.BotLegend;
-                        }
-                    }
-                    commonKey.toggle();
-                    break;
-                case 1:
-                    // Space
-                    SpaceKey spaceKey = e.Source as SpaceKey;
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        inputBox.Text += " ";
-                    }
-                    spaceKey.toggle();
-                    break;
-                case 2:
-                    // Enter
-                    EnterKey enterKey = e.Source as EnterKey;
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        inputBox.Text += Environment.NewLine;
-                    }
-                    enterKey.toggle();
-                    break;
-                case 3:
-                case 4:
-                    // Shifts
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        leftShift.toggle();
-                        rightShift.toggle();
-                        isShiftPressed = !isShiftPressed;
-                    }
-                    wasEdited = false;
-                    break;
-                case 5:
-                    // Ctrl
-                    ControlKey controlKey = e.Source as ControlKey;
-                    System.Diagnostics.Debug.WriteLine(controlKey.TopLegend + " was pressed.");
-                    controlKey.toggle();
-                    wasEdited = false;
-                    break;
-                case 6:
-                    // Tab
-                    TabKey tabKey = e.Source as TabKey;
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        if (tabKey.IsActualTab) inputBox.Text += "\t";
-                        else {
-                            if (isShiftPressed) inputBox.Text += tabKey.BotLegend;
-                            else inputBox.Text += tabKey.TopLegend;
-                        }
-                    }
-                    tabKey.toggle();
-                    break;
-                case 7:
-                    // Caps
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        capsLock.toggle();
-                        isCapsLockPressed = !isCapsLockPressed;
-                    }
-                    wasEdited = false;
-                    break;
-                case 8:
-                    // Backspace
-                    BackspaceKey backspaceKey = e.Source as BackspaceKey;
-                    if (!e.Source.GetHashCode().Equals(lastHit)) {
-                        if (inputBox.Text.Length > 0) {
-                            inputBox.Text = inputBox.Text.Substring(0, inputBox.Text.Length - 1);
-                        }
-                    }
-                    backspaceKey.toggle();
-                    break;
-                default:
-                    // Unknown
-                    break;
-            }
-            if (wasEdited) {
-                inputBox.Focus();
-                inputBox.Select(inputBox.Text.Length, 0);
-            }
-            lastHit = e.Source.GetHashCode();
+            // Stopping timer and reseting highlight
+            if (timer != null) timer.Stop();
+            AbstractKey aKey = e.Source as AbstractKey;
+            aKey.resetHighlight();
+
+            // Launching timer
+            timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
+            object source = e.Source;
+            toggleKey(source);
+            timer.OnElapsed += delegate () {
+                captureKey(source);
+                aKey.resetHighlight();
+            };
+            timer.OnTick += delegate (double ratio) {
+                aKey.progressHighlight(ratio);
+            };
+            timer.Start();
         }
 
         private void captureKey(object source) {
@@ -207,6 +133,31 @@ namespace TobiiEyeX {
             if (wasEdited) {
                 inputBox.Focus();
                 inputBox.Select(inputBox.Text.Length, 0);
+            }
+        }
+
+        // Only use with eye tracking!!!
+        private void toggleKey(object source) {
+            // Basically we switch state for general keys
+            // And for shifts and capses only if they are not already toggled
+            switch (keyTypes[source.GetType()]) {
+                case 3:
+                case 4:
+                    // Shifts
+                    if (!leftShift.toggled && !rightShift.toggled) {
+                        leftShift.toggle();
+                        rightShift.toggle();
+                    }
+                    break;
+                case 7:
+                    // Caps
+                    if (!capsLock.toggled) capsLock.toggle();
+                    break;
+                default:
+                    // All others
+                    AbstractKey key = source as AbstractKey;
+                    key.toggle();
+                    break;
             }
         }
 

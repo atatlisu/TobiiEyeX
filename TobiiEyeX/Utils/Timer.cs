@@ -15,7 +15,7 @@ namespace TobiiEyeX.Utils {
         public bool isRepeating;
         private DispatcherTimer coreTimer;
 
-        public delegate void tickAction();
+        public delegate void tickAction(double progress);
         public delegate void elapsedAction();
         public event tickAction OnTick;
         public event elapsedAction OnElapsed;
@@ -34,7 +34,8 @@ namespace TobiiEyeX.Utils {
         private void onCoreTimerTick(object sender, EventArgs e) {
             if (elapsed < time) {
                 elapsed += interval;
-                OnTick?.Invoke();
+                double ratio = (double) elapsed / time;
+                OnTick?.Invoke(ratio);
             }
             else {
                 OnElapsed?.Invoke();

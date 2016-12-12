@@ -212,13 +212,20 @@ namespace TobiiEyeX {
 
         private void onMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
             if (timer != null) timer.Stop();
+            AbstractKey aKey = e.Source as AbstractKey;
+            aKey.resetHighlight();
         }
 
         private void onMouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
             timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
             object source = e.Source;
+            AbstractKey aKey = source as AbstractKey;
             timer.OnElapsed += delegate () {
                 captureKey(source);
+                aKey.resetHighlight();
+            };
+            timer.OnTick += delegate (double ratio) {
+                aKey.progressHighlight(ratio);
             };
             timer.Start();
         }

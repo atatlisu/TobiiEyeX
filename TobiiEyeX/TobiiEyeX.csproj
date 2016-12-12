@@ -103,6 +103,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AbstractKey.cs" />
     <Compile Include="Utils\Timer.cs" />
     <Page Include="BackspaceKey.xaml">
       <SubType>Designer</SubType>

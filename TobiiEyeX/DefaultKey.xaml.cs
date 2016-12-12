@@ -17,9 +17,7 @@ namespace TobiiEyeX {
     /// <summary>
     /// Interaction logic for DefaultKey.xaml
     /// </summary>
-    public partial class DefaultKey : UserControl {
-
-        private bool toggled = false;
+    public partial class DefaultKey : AbstractKey {
 
         public static readonly DependencyProperty TopLegendProperty = DependencyProperty.Register("TopLegend", typeof(string), typeof(DefaultKey));
         public static readonly DependencyProperty BotLegendProperty = DependencyProperty.Register("BotLegend", typeof(string), typeof(DefaultKey));
@@ -45,7 +43,7 @@ namespace TobiiEyeX {
             DataContext = this;
         }
 
-        public void toggle() {
+        public override void toggle() {
             if (toggled) {
                 shadow.Opacity = 0;
                 toggled = false;
@@ -54,6 +52,14 @@ namespace TobiiEyeX {
                 shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
                 toggled = true;
             }
+        }
+
+        public override void progressHighlight(double ratio) {
+            highlight.Height = ActualHeight * ratio;
+        }
+
+        public override void resetHighlight() {
+            highlight.Height = 0;
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {

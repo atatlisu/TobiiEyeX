@@ -46,23 +46,29 @@ namespace TobiiEyeX {
         }
 
         private void onHasGazeChanged(object sender, RoutedEventArgs e) {
-            // Stopping timer and reseting highlight
-            if (timer != null) timer.Stop();
-            AbstractKey aKey = e.Source as AbstractKey;
-            aKey.resetHighlight();
-
-            // Launching timer
-            timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
-            object source = e.Source;
-            toggleKey(source);
-            timer.OnElapsed += delegate () {
-                captureKey(source);
+            if (timer != null && timer.isRunning) {
+                // If first initialization or timer is already running
+                // Stop it and refresh key, because we moving to a new one
+                timer.Stop();
+                AbstractKey aKey = e.Source as AbstractKey;
                 aKey.resetHighlight();
-            };
-            timer.OnTick += delegate (double ratio) {
-                aKey.progressHighlight(ratio);
-            };
-            timer.Start();
+            }
+            else {
+                // If timer is not running 
+                // Just run it
+                timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
+                object source = e.Source;
+                AbstractKey aKey = e.Source as AbstractKey;
+                toggleKey(source);
+                timer.OnElapsed += delegate () {
+                    captureKey(source);
+                    aKey.resetHighlight();
+                };
+                timer.OnTick += delegate (double ratio) {
+                    aKey.progressHighlight(ratio);
+                };
+                timer.Start();
+            } 
         }
 
         private void captureKey(object source) {

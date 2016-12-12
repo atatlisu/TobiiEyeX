@@ -28,7 +28,7 @@
             <RowDefinition Height="*" MinHeight="275"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBox x:Name="inputBox" Margin="10" TextWrapping="Wrap" Text="" FontSize="16" AcceptsReturn="True" AcceptsTab="True" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <Grid MouseLeftButtonUp="onMouseLeftButtonUp" Margin="10" Grid.Row="1">
+        <Grid Margin="10" Grid.Row="1" MouseLeftButtonDown="onMouseLeftButtonDown" MouseLeftButtonUp="onMouseLeftButtonUp">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" MinHeight="54"></RowDefinition>
                 <RowDefinition Height="*" MinHeight="54"></RowDefinition>

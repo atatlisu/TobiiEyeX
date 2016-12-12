@@ -6,6 +6,6 @@
              StartupUri="Keyboard.xaml">
     <Application.Resources>
         <sys:Double x:Key="HighlightOpacity">0.4</sys:Double>
-        <sys:Double x:Key="Threshold">1.0</sys:Double>
+        <sys:Int32 x:Key="Threshold">1000</sys:Int32>
     </Application.Resources>
 </Application>

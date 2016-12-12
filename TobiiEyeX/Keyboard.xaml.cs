@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using EyeXFramework.Wpf;
 using Tobii.EyeX.Framework;
+using TobiiEyeX.Utils;
 
 namespace TobiiEyeX {
     /// <summary>
@@ -37,17 +38,13 @@ namespace TobiiEyeX {
             { typeof(BackspaceKey), 8 }
         };
 
+        private Timer timer;
+
         public Keyboard() {
             InitializeComponent();
-            inputBox.Focus();
             eyeXHost = new WpfEyeXHost();
             eyeXHost.Start();
-            EyeXFramework.GazePointDataStream dataStream = eyeXHost.CreateGazePointDataStream(GazePointDataMode.LightlyFiltered);
-            dataStream.Next += onEyePositionDataStreamNext;
-        }
-
-        private void onEyePositionDataStreamNext(object sender, EyeXFramework.GazePointEventArgs e) {
-            //System.Diagnostics.Debug.WriteLine("Gaze point is ({0:0.0}, {1:0.0})", e.X, e.Y);
+            inputBox.Focus();
         }
 
         private void onHasGazeChanged(object sender, RoutedEventArgs e) {
@@ -142,13 +139,12 @@ namespace TobiiEyeX {
             lastHit = e.Source.GetHashCode();
         }
 
-        private void onMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
-            // System.Diagnostics.Debug.WriteLine
+        private void captureKey(object source) {
             bool wasEdited = true;
-            switch (keyTypes[e.Source.GetType()]) {
+            switch (keyTypes[source.GetType()]) {
                 case 0:
                     // Default
-                    DefaultKey commonKey = e.Source as DefaultKey;
+                    DefaultKey commonKey = source as DefaultKey;
                     if (commonKey.IsAlphabet) {
                         if (isShiftPressed || isCapsLockPressed) inputBox.Text += commonKey.TopLegend.ToUpper();
                         else inputBox.Text += commonKey.TopLegend.ToLower();
@@ -160,12 +156,12 @@ namespace TobiiEyeX {
                     break;
                 case 1:
                     // Space
-                    SpaceKey spaceKey = e.Source as SpaceKey;
+                    SpaceKey spaceKey = source as SpaceKey;
                     inputBox.Text += " ";
                     break;
                 case 2:
                     // Enter
-                    EnterKey enterKey = e.Source as EnterKey;
+                    EnterKey enterKey = source as EnterKey;
                     inputBox.Text += Environment.NewLine;
                     break;
                 case 3:
@@ -178,13 +174,13 @@ namespace TobiiEyeX {
                     break;
                 case 5:
                     // Ctrl
-                    ControlKey controlKey = e.Source as ControlKey;
+                    ControlKey controlKey = source as ControlKey;
                     System.Diagnostics.Debug.WriteLine(controlKey.TopLegend + " was pressed.");
                     wasEdited = false;
                     break;
                 case 6:
                     // Tab
-                    TabKey tabKey = e.Source as TabKey;
+                    TabKey tabKey = source as TabKey;
                     if (tabKey.IsActualTab) inputBox.Text += "\t";
                     else {
                         if (isShiftPressed) inputBox.Text += tabKey.BotLegend;
@@ -199,7 +195,7 @@ namespace TobiiEyeX {
                     break;
                 case 8:
                     // Backspace
-                    BackspaceKey backspaceKey = e.Source as BackspaceKey;
+                    BackspaceKey backspaceKey = source as BackspaceKey;
                     if (inputBox.Text.Length > 0) {
                         inputBox.Text = inputBox.Text.Substring(0, inputBox.Text.Length - 1);
                     }
@@ -212,6 +208,19 @@ namespace TobiiEyeX {
                 inputBox.Focus();
                 inputBox.Select(inputBox.Text.Length, 0);
             }
+        }
+
+        private void onMouseLeftButtonUp(object sender, MouseButtonEventArgs e) {
+            if (timer != null) timer.Stop();
+        }
+
+        private void onMouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
+            timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
+            object source = e.Source;
+            timer.OnElapsed += delegate () {
+                captureKey(source);
+            };
+            timer.Start();
         }
 
         private void onClose(object sender, EventArgs e) {

@@ -75,29 +75,32 @@ namespace TobiiEyeX {
 
         private void captureKey(object source) {
             bool wasEdited = true;
-            bool cursorMoved = false;
+            int selection = inputBox.SelectionStart;
             switch (keyTypes[source.GetType()]) {
                 case 0:
                     // Default
                     DefaultKey commonKey = source as DefaultKey;
                     if (commonKey.IsAlphabet) {
-                        if (isShiftPressed || isCapsLockPressed) inputBox.Text += commonKey.TopLegend.ToUpper();
-                        else inputBox.Text += commonKey.TopLegend.ToLower();
+                        if (isShiftPressed || isCapsLockPressed) inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, commonKey.TopLegend.ToUpper());
+                        else inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, commonKey.TopLegend.ToLower());
                     }
                     else {
-                        if (isShiftPressed) inputBox.Text += commonKey.TopLegend;
-                        else inputBox.Text += commonKey.BotLegend;
+                        if (isShiftPressed) inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, commonKey.TopLegend);
+                        else inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, commonKey.BotLegend);
                     }
+                    selection++;
                     break;
                 case 1:
                     // Space
                     SpaceKey spaceKey = source as SpaceKey;
-                    inputBox.Text += " ";
+                    inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, " ");
+                    selection++;
                     break;
                 case 2:
                     // Enter
                     EnterKey enterKey = source as EnterKey;
-                    inputBox.Text += Environment.NewLine;
+                    inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, Environment.NewLine);
+                    selection += 2;
                     break;
                 case 3:
                 case 4:
@@ -115,11 +118,12 @@ namespace TobiiEyeX {
                 case 6:
                     // Tab
                     TabKey tabKey = source as TabKey;
-                    if (tabKey.IsActualTab) inputBox.Text += "\t";
+                    if (tabKey.IsActualTab) inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, "\t");
                     else {
-                        if (isShiftPressed) inputBox.Text += tabKey.BotLegend;
-                        else inputBox.Text += tabKey.TopLegend;
+                        if (isShiftPressed) inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, tabKey.BotLegend);
+                        else inputBox.Text = inputBox.Text.Insert(inputBox.SelectionStart, tabKey.TopLegend);
                     }
+                    selection++;
                     break;
                 case 7:
                     // Caps
@@ -131,17 +135,14 @@ namespace TobiiEyeX {
                     // Backspace
                     BackspaceKey backspaceKey = source as BackspaceKey;
                     if (inputBox.Text.Length > 0 && inputBox.SelectionStart > 0) {
-                        int destinatin = inputBox.SelectionStart - 1;
                         inputBox.Text = inputBox.Text.Remove(inputBox.SelectionStart - 1, 1);
-                        inputBox.Select(destinatin, 0);
+                        selection--;
                     }
-                    cursorMoved = true;
                     break;
                 case 9:
                     ArrowKey arrowKey = source as ArrowKey;
                     moveSelection(arrowKey.Direction);
                     wasEdited = false;
-                    cursorMoved = true;
                     break;
                 default:
                     // Unknown
@@ -149,7 +150,7 @@ namespace TobiiEyeX {
             }
             if (wasEdited) {
                 inputBox.Focus();
-                if (!cursorMoved) inputBox.Select(inputBox.Text.Length, 0);
+                inputBox.Select(selection, 0);
             }
         }
 
@@ -181,24 +182,24 @@ namespace TobiiEyeX {
             switch (direction) {
                 case DirectionType.UP: {
                         int currentLine = inputBox.GetLineIndexFromCharacterIndex(inputBox.SelectionStart);
-                        if (currentLine < 1) return;
+                        if (currentLine == 0) return;
                         int shift = inputBox.SelectionStart - inputBox.GetCharacterIndexFromLineIndex(currentLine);
                         int previousLineLength = inputBox.GetLineLength(currentLine - 1);
                         int previousLineStart = inputBox.GetCharacterIndexFromLineIndex(currentLine - 1);
                         int destination = shift + previousLineStart;
-                        if (shift < previousLineLength && destination < inputBox.Text.Length) inputBox.Select(destination, 0);
-                        else inputBox.Select(previousLineStart + previousLineLength - 1, 0);
+                        if (shift <= (previousLineLength-2) && destination < inputBox.Text.Length) inputBox.Select(destination, 0);
+                        else inputBox.Select(previousLineStart + previousLineLength - 2, 0);
                     }
                     break;
                 case DirectionType.DOWN: {
                         int currentLine = inputBox.GetLineIndexFromCharacterIndex(inputBox.SelectionStart);
-                        if (currentLine == inputBox.LineCount) return;
+                        if (currentLine == (inputBox.LineCount - 1)) return;
                         int shift = inputBox.SelectionStart - inputBox.GetCharacterIndexFromLineIndex(currentLine);
                         int nextLineLength = inputBox.GetLineLength(currentLine + 1);
                         int nextLineStart = inputBox.GetCharacterIndexFromLineIndex(currentLine + 1);
                         int destination = shift + nextLineStart;
-                        if (shift < nextLineLength && destination < inputBox.Text.Length) inputBox.Select(destination, 0);
-                        else inputBox.Select(nextLineStart + nextLineLength + 1, 0);
+                        if (shift <= nextLineLength && destination < inputBox.Text.Length) inputBox.Select(destination, 0);
+                        else inputBox.Select(nextLineStart + nextLineLength, 0);
                     }
                     break;
                 case DirectionType.LEFT:
@@ -225,7 +226,7 @@ namespace TobiiEyeX {
         }
 
         private void onMouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            timer = new Timer((int)Application.Current.Resources["Threshold"], 100, true);
+            timer = new Timer((int)Application.Current.Resources["Threshold"], 10, true);
             object source = e.Source;
             AbstractKey aKey = source as AbstractKey;
             timer.OnElapsed += delegate () {

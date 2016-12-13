@@ -33,7 +33,8 @@ namespace TobiiEyeX {
             { typeof(ControlKey), 5 },
             { typeof(TabKey), 6 },
             { typeof(CapslockKey), 7 },
-            { typeof(BackspaceKey), 8 }
+            { typeof(BackspaceKey), 8 },
+            { typeof(ArrowKey), 9 }
         };
 
         private Timer timer;
@@ -74,6 +75,7 @@ namespace TobiiEyeX {
 
         private void captureKey(object source) {
             bool wasEdited = true;
+            bool cursorMoved = false;
             switch (keyTypes[source.GetType()]) {
                 case 0:
                     // Default
@@ -128,9 +130,18 @@ namespace TobiiEyeX {
                 case 8:
                     // Backspace
                     BackspaceKey backspaceKey = source as BackspaceKey;
-                    if (inputBox.Text.Length > 0) {
-                        inputBox.Text = inputBox.Text.Substring(0, inputBox.Text.Length - 1);
+                    if (inputBox.Text.Length > 0 && inputBox.SelectionStart > 0) {
+                        int destinatin = inputBox.SelectionStart - 1;
+                        inputBox.Text = inputBox.Text.Remove(inputBox.SelectionStart - 1, 1);
+                        inputBox.Select(destinatin, 0);
                     }
+                    cursorMoved = true;
+                    break;
+                case 9:
+                    ArrowKey arrowKey = source as ArrowKey;
+                    moveSelection(arrowKey.Direction);
+                    wasEdited = false;
+                    cursorMoved = true;
                     break;
                 default:
                     // Unknown
@@ -138,7 +149,7 @@ namespace TobiiEyeX {
             }
             if (wasEdited) {
                 inputBox.Focus();
-                inputBox.Select(inputBox.Text.Length, 0);
+                if (!cursorMoved) inputBox.Select(inputBox.Text.Length, 0);
             }
         }
 
@@ -162,6 +173,47 @@ namespace TobiiEyeX {
                     // All others
                     AbstractKey key = source as AbstractKey;
                     key.toggle();
+                    break;
+            }
+        }
+
+        private void moveSelection(DirectionType direction) {
+            switch (direction) {
+                case DirectionType.UP: {
+                        int currentLine = inputBox.GetLineIndexFromCharacterIndex(inputBox.SelectionStart);
+                        if (currentLine < 1) return;
+                        int shift = inputBox.SelectionStart - inputBox.GetCharacterIndexFromLineIndex(currentLine);
+                        int previousLineLength = inputBox.GetLineLength(currentLine - 1);
+                        int previousLineStart = inputBox.GetCharacterIndexFromLineIndex(currentLine - 1);
+                        int destination = shift + previousLineStart;
+                        if (shift < previousLineLength && destination < inputBox.Text.Length) inputBox.Select(destination, 0);
+                        else inputBox.Select(previousLineStart + previousLineLength - 1, 0);
+                    }
+                    break;
+                case DirectionType.DOWN: {
+                        int currentLine = inputBox.GetLineIndexFromCharacterIndex(inputBox.SelectionStart);
+                        if (currentLine == inputBox.LineCount) return;
+                        int shift = inputBox.SelectionStart - inputBox.GetCharacterIndexFromLineIndex(currentLine);
+                        int nextLineLength = inputBox.GetLineLength(currentLine + 1);
+                        int nextLineStart = inputBox.GetCharacterIndexFromLineIndex(currentLine + 1);
+                        int destination = shift + nextLineStart;
+                        if (shift < nextLineLength && destination < inputBox.Text.Length) inputBox.Select(destination, 0);
+                        else inputBox.Select(nextLineStart + nextLineLength + 1, 0);
+                    }
+                    break;
+                case DirectionType.LEFT:
+                    if (inputBox.SelectionStart > 0) {
+                        inputBox.Select(inputBox.SelectionStart - 1, 0);
+                    }
+                    break;
+                case DirectionType.RIGHT:
+                    if (inputBox.SelectionStart < inputBox.Text.Length) {
+                        inputBox.Select(inputBox.SelectionStart + 1, 0);
+                    }
+                    break;
+                case DirectionType.UNDEFINED:
+                    break;
+                default:
                     break;
             }
         }

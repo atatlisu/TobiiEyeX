@@ -105,7 +105,7 @@
 
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1.2*" MinWidth="95"></ColumnDefinition>
+                    <ColumnDefinition Width="1.3*" MinWidth="95"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
@@ -147,7 +147,9 @@
                     <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
-                    <ColumnDefinition Width="1.8*" MinWidth="150"></ColumnDefinition>
+                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                    <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
+                    <ColumnDefinition Width="*" MinWidth="54"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <local:LeftShiftKey x:Name="leftShift" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" Style="{StaticResource EyeXGazeAwareKey}" Width="Auto" Height="Auto" />
                 <local:DefaultKey Margin="5" TopLegend="Z" IsAlphabet="True" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="1" Width="Auto" Height="Auto"/>
@@ -160,7 +162,7 @@
                 <local:DefaultKey Margin="5" TopLegend="&lt;" BotLegend="," Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="8" Width="Auto" Height="Auto"/>
                 <local:DefaultKey Margin="5" TopLegend="&gt;" BotLegend="." Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="9" Width="Auto" Height="Auto"/>
                 <local:DefaultKey Margin="5" TopLegend="?" BotLegend="/" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="10" Width="Auto" Height="Auto"/>
-                <local:RightShiftKey x:Name="rightShift" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="11" Width="Auto" Height="Auto"/>
+                <local:ArrowKey  Margin="5"  Arrow="&#xE110;" Direction="UP" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="12" Width="Auto" Height="Auto"/>
             </Grid>
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
@@ -170,8 +172,9 @@
                     <ColumnDefinition Width="3*" MinWidth="339"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="68"></ColumnDefinition>
                     <ColumnDefinition Width="*" MinWidth="68"></ColumnDefinition>
-                    <ColumnDefinition Width="*" MinWidth="68"></ColumnDefinition>
-                    <ColumnDefinition Width="*" MinWidth="68"></ColumnDefinition>
+                    <ColumnDefinition Width="0.75*" MinWidth="54"></ColumnDefinition>
+                    <ColumnDefinition Width="0.75*" MinWidth="54"></ColumnDefinition>
+                    <ColumnDefinition Width="0.75*" MinWidth="54"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <local:ControlKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" TopLegend="Ctrl" Style="{StaticResource EyeXGazeAwareKey}" Width="Auto" Height="Auto" />
                 <local:ControlKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" TopLegend="Win" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="1" Width="Auto" Height="Auto"/>
@@ -179,8 +182,9 @@
                 <local:SpaceKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="3" Width="Auto" Height="Auto"/>
                 <local:ControlKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" TopLegend="Alt" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="4" Width="Auto" Height="Auto"/>
                 <local:ControlKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" TopLegend="Win" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="5" Width="Auto" Height="Auto"/>
-                <local:ControlKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" TopLegend="Menu" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="6" Width="Auto" Height="Auto"/>
-                <local:ControlKey HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Stretch" TopLegend="Ctrl" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="7" Width="Auto" Height="Auto"/>
+                <local:ArrowKey  Margin="5"  Arrow="&#xE112;" Direction="LEFT" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="6" Width="Auto" Height="Auto"/>
+                <local:ArrowKey  Margin="5"  Arrow="&#xE1FD;" Direction="DOWN" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="7" Width="Auto" Height="Auto"/>
+                <local:ArrowKey  Margin="5"  Arrow="&#xE111;" Direction="RIGHT" Style="{StaticResource EyeXGazeAwareKey}" Grid.Column="8" Width="Auto" Height="Auto"/>
             </Grid>
         </Grid>
     </Grid>

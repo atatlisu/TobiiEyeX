@@ -104,7 +104,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AbstractKey.cs" />
+    <Compile Include="ArrowKey.xaml.cs">
+      <DependentUpon>ArrowKey.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\Timer.cs" />
+    <Page Include="ArrowKey.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="BackspaceKey.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -1,16 +1,29 @@
-﻿<UserControl x:Class="TobiiEyeX.TabKey"
+﻿<local:AbstractKey x:Class="TobiiEyeX.TabKey"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TobiiEyeX"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Height="54" MouseEnter="onMouseEnter" MouseLeave="onMouseleave">
+             d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Left" VerticalAlignment="Top" Width="81" Height="54" MouseEnter="onMouseEnter" MouseLeave="onMouseleave" MinWidth="81" MinHeight="54">
     <Grid>
-        <Image x:Name="image" Height="54" Margin="0" Width="81" Source="img/Keyboard/tab.png"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="img/Keyboard/tab.png"/>
+        </Grid.Background>
+        <Canvas x:Name="highlight" Background="#FF131010" Opacity="0.3" Height="0" VerticalAlignment="Bottom" />
         <Canvas x:Name="shadow" Background="#FF342A2A" Opacity="0" />
-        <Label x:Name="topLegend" Content="{Binding Path=TopLegend}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,0,0,0" Width="66" Height="24"/>
-        <Label x:Name="botLegend" Content="{Binding Path=BotLegend}" HorizontalAlignment="Left" Margin="5,20,0,0" VerticalAlignment="Top" Width="66" Height="24"/>
-
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"></RowDefinition>
+                <RowDefinition Height="0.7*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="topLegend" Content="{Binding Path=TopLegend}" Margin="0" Grid.Row="1" Grid.Column="1" Padding="5,0"/>
+            <Label x:Name="botLegend" Content="{Binding Path=BotLegend}" Margin="0,0,0,10" Grid.Row="2" Padding="5,0" Grid.Column="1"/>
+        </Grid>
     </Grid>
-</UserControl>
+</local:AbstractKey>

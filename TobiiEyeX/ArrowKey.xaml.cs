@@ -15,12 +15,36 @@ using System.Windows.Shapes;
 
 namespace TobiiEyeX {
     /// <summary>
-    /// Interaction logic for EnterKey.xaml
+    /// Interaction logic for ArrowKey.xaml
     /// </summary>
-    public partial class EnterKey : AbstractKey {
+    /// 
 
-        public EnterKey() {
+    public enum DirectionType {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT,
+        UNDEFINED
+    }
+
+    public partial class ArrowKey : AbstractKey {
+
+        public static readonly DependencyProperty ArrowProperty = DependencyProperty.Register("Arrow", typeof(string), typeof(ArrowKey));
+        public static readonly DependencyProperty DirectionProperty = DependencyProperty.Register("Direction", typeof(DirectionType), typeof(ArrowKey));
+
+        public string Arrow {
+            get { return (string)GetValue(ArrowProperty); }
+            set { SetValue(ArrowProperty, value); }
+        }
+
+        public DirectionType Direction {
+            get { return (DirectionType)GetValue(DirectionProperty); }
+            set { SetValue(DirectionProperty, value); }
+        }
+
+        public ArrowKey() {
             InitializeComponent();
+            DataContext = this;
         }
 
         public override void toggle() {

@@ -17,10 +17,29 @@ namespace TobiiEyeX {
     /// <summary>
     /// Interaction logic for SpaceKey.xaml
     /// </summary>
-    public partial class SpaceKey : UserControl {
+    public partial class SpaceKey : AbstractKey {
 
         public SpaceKey() {
             InitializeComponent();
+        }
+
+        public override void toggle() {
+            if (toggled) {
+                shadow.Opacity = 0;
+                toggled = false;
+            }
+            else {
+                shadow.Opacity = (double)Application.Current.Resources["HighlightOpacity"];
+                toggled = true;
+            }
+        }
+
+        public override void progressHighlight(double ratio) {
+            highlight.Height = ActualHeight * ratio;
+        }
+
+        public override void resetHighlight() {
+            highlight.Height = 0;
         }
 
         private void onMouseEnter(object sender, MouseEventArgs e) {

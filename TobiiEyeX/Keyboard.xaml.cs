@@ -105,7 +105,6 @@ namespace TobiiEyeX {
                 case 3:
                 case 4:
                     // Shifts
-                    leftShift.toggle();
                     isShiftPressed = !isShiftPressed;
                     wasEdited = false;
                     break;
@@ -127,7 +126,6 @@ namespace TobiiEyeX {
                     break;
                 case 7:
                     // Caps
-                    capsLock.toggle();
                     isCapsLockPressed = !isCapsLockPressed;
                     wasEdited = false;
                     break;
@@ -157,18 +155,16 @@ namespace TobiiEyeX {
         // Only use with eye tracking!!!
         private void toggleKey(object source) {
             // Basically we switch state for general keys
-            // And for shifts and capses only if they are not already toggled
+            // And for shift and caps only if they are not already toggled
             switch (keyTypes[source.GetType()]) {
                 case 3:
                 case 4:
                     // Shifts
-                    if (!leftShift.toggled) {
-                        leftShift.toggle();
-                    }
+                    if (!isShiftPressed) leftShift.toggle();
                     break;
                 case 7:
                     // Caps
-                    if (!capsLock.toggled) capsLock.toggle();
+                    if (!isCapsLockPressed) capsLock.toggle();
                     break;
                 default:
                     // All others
